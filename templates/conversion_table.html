@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线网页取证系统</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="button-wrapper"><a href="/" class="button1">返回首页</a></div>
+
+    <div class="container">
+        <form action="{{ url_for('process') }}" method="post">
+            <h1>转换表格</h1>
+            <label>请选择一个网站：</label>
+            <br><br>
+            <select name="folder" class="select-folder">
+                {% for folder in dirs %}
+                <option value="{{ folder }}">{{ folder }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label>请选择一个操作：</label>
+            <input type="radio" name="action" value="process">处理数据&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="action" value="download">下载文件
+            <br><br>
+<!--            {% for file in files %}-->
+<!--            <input type="checkbox" name="files" value="{{ file }}"> {{ file }}<br>-->
+<!--            {% endfor %}-->
+            <br>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</body>
+</html>

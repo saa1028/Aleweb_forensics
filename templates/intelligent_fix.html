@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线网页取证系统</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<div class="button-wrapper"><a href="/" class="button1">返回首页</a></div>
+<div class="container">
+    <form action="/intelligent_fix" method="post">
+        <h1>智能固定</h1>
+        <div class="input-row">
+            <label for="first_page_url">第一页URL:</label>
+            <input type="text" id="first_page_url" name="first_page_url" placeholder="https://0.0.0.0/index?page=1"
+                   required="required">
+        </div>
+        <div class="input-row">
+            <label for="second_page_url">第二页URL:</label>
+            <input type="text" id="second_page_url" name="second_page_url" placeholder="https://0.0.0.0/index?page=2"
+                   required="required">
+        </div>
+        <div class="input-row">
+            <label for="num_pages">页数:</label>
+            <input type="text" id="num_pages" name="num_pages" placeholder="100" required="required"
+                   oninput="value=value.replace(/[^\d]/g,'')">
+        </div>
+        <div class="input-row">
+            <label for="request_headers">请求头:</label>
+            <textarea class="input-textarea" name="request_headers"
+                      placeholder="GET / HTTP/2 Host: www.example.com User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0 Cookie: p-b=58y0gDkcxMZNwe80"></textarea>
+        </div>
+        <div class="thread-process-row">
+            <div class="select-container">
+                <label for="num_threads">线程数:</label>
+                <select id="num_threads" name="num_threads">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4" selected>4</option>
+                    <option value="8">8</option>
+                    <option value="16">16</option>
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="128">128</option>
+                </select>
+            </div>
+            <div class="select-container">
+                <label for="num_processes">进程数:</label>
+                <select id="num_processes" name="num_processes">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+        </div>
+        <div class="button-row">
+            <button type="submit" value="button" onclick="return CheckUrl()">开始固定</button>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            {% if category == 'success' %}
+                                <div class="alert alert-success" role="alert">
+                                    <p style="color: green">{{ message }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </form>
+</div>
+<script>
+    function CheckUrl() {
+        const first_url = document.getElementById("first_page_url").value;
+        const second_url = document.getElementById("second_page_url").value;
+        const reg = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+        if (!reg.test(first_url)) {
+            // 创建一个含有文本的 <p> 元素
+            var para = document.createElement("p");
+            var node = document.createTextNode("第一页网址不是以http://https://开头，或者不是网址！");
+            para.appendChild(node);
+
+            // 创建一个含有关闭按钮的 <span> 元素
+            var span = document.createElement("span");
+            var cross = document.createTextNode("x");
+            span.appendChild(cross);
+            span.className = "close-btn";
+            span.onclick = function () {
+                this.parentElement.classList.remove('fade-in');
+                this.parentElement.classList.add('fade-out');
+                setTimeout(function () {
+                    this.parentElement.style.display = 'none';
+                }.bind(this), 500);
+            }
+
+            // 创建一个 <div> 元素并将 <p> 和 <span> 元素添加到其中
+            var div = document.createElement("div");
+            div.appendChild(para);
+            div.appendChild(span);
+            div.className = "alert1 fade-in";
+
+            // 将这个 <div> 元素添加到页面中
+            document.body.appendChild(div);
+            return false
+        } else {
+            if (!reg.test(second_url)) {
+                // 创建一个含有文本的 <p> 元素
+                var para = document.createElement("p");
+                var node = document.createTextNode("第二页网址不是以http://https://开头，或者不是网址！");
+                para.appendChild(node);
+
+                // 创建一个含有关闭按钮的 <span> 元素
+                var span = document.createElement("span");
+                var cross = document.createTextNode("x");
+                span.appendChild(cross);
+                span.className = "close-btn";
+                span.onclick = function () {
+                    this.parentElement.classList.remove('fade-in');
+                    this.parentElement.classList.add('fade-out');
+                    setTimeout(function () {
+                        this.parentElement.style.display = 'none';
+                    }.bind(this), 500);
+                }
+
+                // 创建一个 <div> 元素并将 <p> 和 <span> 元素添加到其中
+                var div = document.createElement("div");
+                div.appendChild(para);
+                div.appendChild(span);
+                div.className = "alert1 fade-in";
+
+                // 将这个 <div> 元素添加到页面中
+                document.body.appendChild(div);
+                return false
+            } else {
+                return true
+            }
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

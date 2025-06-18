@@ -1,0 +1,239 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+}
+
+.container {
+    width: 780px;
+    padding: 26px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.back-to-home {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 6px 12px;
+    color: black;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 26px;
+}
+
+label {
+    margin-bottom: 6.5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10.4px;
+    margin: 5.2px 0;
+    box-sizing: border-box;
+}
+input[type="text"]::placeholder {
+    color: gray;
+}
+
+input[type="text"]:focus::placeholder {
+    color: transparent;
+}
+
+.input-textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5.2px 0;
+  box-sizing: border-box;
+  vertical-align: top;
+  text-align: left;
+}
+
+.input-textarea:focus::placeholder {
+  color: transparent;
+}
+
+.input-textarea::placeholder {
+  color: gray;
+}
+
+.thread-process-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.select-container {
+    width: 80%;
+    position: relative;
+}
+
+select {
+    width: 15%;
+    padding: 10.4px;
+}
+
+button {
+    padding: 13px 26px;
+    font-size: 1.43em;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+button:active {
+  background-color: #005cbf;
+}
+
+.select-container:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40%;
+    background-color: #ccc;
+}
+
+input[type="submit"] {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+input[type="submit"]:active {
+  background-color: #005cbf;
+}
+
+input[type="radio"]{
+    margin-right: 10px;
+}
+.select-folder{
+    width: 70%;
+    padding: 10.4px;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+}
+
+.alert-container {
+  margin-left: 10px;
+}
+
+.alert {
+  margin-top: 3px;
+  margin-left: auto;
+  margin-right: 10px;
+  padding: 50px;
+  border-radius: 5px;
+}
+
+/* 设置弹窗的背景颜色和文本颜色 */
+.alert1 {
+  background-color: #e8ebe954;
+  color: rgb(48, 58, 41);
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 1.5em;
+  text-align: center;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 8%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+/* 添加一个关闭按钮 */
+.close-btn {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 悬停在关闭按钮上时改变背景颜色 */
+.close-btn:hover {
+  background-color: #f1ecec;
+}
+
+/* 定义淡入动画效果 */
+.fade-in {
+  animation: fadeIn 2.5s;
+}
+
+/* 定义淡出动画效果 */
+.fade-out {
+  animation: fadeOut 2.5s;
+}
+
+/* 定义淡入动画的关键帧 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 定义淡出动画的关键帧 */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.button-wrapper {
+  position: absolute; /* 设置绝对定位 */
+  top: 5px; /* 距离顶部为0 */
+  left: 10px; /* 距离左侧为0 */
+}
+
+.button1 {
+  display: block; /* 设置块级元素 */
+  padding: 10px 20px; /* 设置内边距 */
+  background-color: #eaeeeb; /* 设置背景色 */
+  color: #888585; /* 设置字体颜色 */
+  border-radius: 10px; /* 设置边框圆角 */
+  text-decoration: none; /* 取消下划线 */
+  border: none; /* 取消边框 */
+}
